@@ -138,8 +138,11 @@ sprites.onOverlap(SpriteKind.balbi2, SpriteKind.Player, function (sprite, otherS
     pause(5000)
     game.gameOver(false)
 })
-info.onScore(7, function () {
-    game.gameOver(true)
+info.onScore(10, function () {
+    tiles.setWallAt(tiles.getTileLocation(43, 8), false)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
+    tiles.placeOnTile(Render.getRenderSpriteInstance(), tiles.getTileLocation(90, 2))
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     tiles.setCurrentTilemap(tilemap`level3`)
@@ -668,6 +671,7 @@ scene.setBackgroundImage(img`
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     `)
 info.setLife(5)
+tiles.setWallAt(tiles.getTileLocation(43, 8), true)
 for (let value of tiles.getTilesByType(assets.tile`myTile9`)) {
     coin = sprites.create(img`
         . . . . . . . . . . . . . . . . 
